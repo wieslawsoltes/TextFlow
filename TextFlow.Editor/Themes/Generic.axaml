@@ -1,0 +1,35 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:TextFlow.Editor.Controls">
+  <Style Selector="controls|RichTextBox">
+      <Setter Property="Background" Value="White"/>
+      <Setter Property="BorderBrush" Value="#FF888888"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="8"/>
+      <Setter Property="Template">
+        <ControlTemplate TargetType="controls:RichTextBox">
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  Padding="{TemplateBinding Padding}">
+            <ScrollViewer x:Name="PART_ScrollViewer"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+              <controls:RichTextPresenter x:Name="PART_Presenter"
+                                          Document="{TemplateBinding Document}"
+                                          SelectionBrush="{TemplateBinding SelectionBrush}"
+                                          CaretBrush="{TemplateBinding CaretBrush}"
+                                          CaretWidth="{TemplateBinding CaretWidth}"
+                                          FontFamily="{TemplateBinding FontFamily}"
+                                          FontSize="{TemplateBinding FontSize}"
+                                          FontStyle="{TemplateBinding FontStyle}"
+                                          FontWeight="{TemplateBinding FontWeight}"
+                                          Foreground="{TemplateBinding Foreground}"
+                                           TextWrapping="Wrap"
+                                           TextAlignment="{TemplateBinding TextAlignment}"/>
+            </ScrollViewer>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+</Styles>

@@ -1,0 +1,239 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:TextFlow.Editor.Controls;assembly=TextFlow.Editor"
+        x:Class="TextFlow.Editor.Sample.MainWindow"
+        Width="900"
+        Height="600"
+        Title="TextFlow Editor Sample"
+        mc:Ignorable="d">
+  <Window.Resources>
+    <DataTemplate x:Key="ColorOptionTemplate">
+      <StackPanel Orientation="Horizontal"
+                  Spacing="8">
+        <Border Width="18"
+                Height="18"
+                CornerRadius="4"
+                Background="{Binding Brush}"/>
+        <TextBlock Text="{Binding Name}"/>
+      </StackPanel>
+    </DataTemplate>
+  </Window.Resources>
+
+  <Grid RowDefinitions="Auto,Auto,*"
+        RowSpacing="12"
+        Margin="16">
+    <StackPanel>
+      <TextBlock Text="TextFlow Editor Sample"
+                 FontSize="24"
+                 FontWeight="Bold"/>
+      <TextBlock Text="Try typing, formatting, or using the toolbar below to experiment with the editor."
+                 Margin="0,4,0,0"
+                 TextWrapping="Wrap"/>
+    </StackPanel>
+
+    <Border Grid.Row="1"
+            Background="#FFF6F6F6"
+            BorderBrush="#FFE0E0E0"
+            BorderThickness="1"
+            CornerRadius="6"
+            Padding="8">
+      <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Disabled">
+        <StackPanel Orientation="Horizontal"
+                    Spacing="8"
+                    VerticalAlignment="Center">
+          <Button Width="72"
+                  Height="32"
+                  Content="Undo"
+                  Click="UndoButton_OnClick">
+            <ToolTip.Tip>Undo (Ctrl/Cmd+Z)</ToolTip.Tip>
+          </Button>
+          <Button Width="72"
+                  Height="32"
+                  Content="Redo"
+                  Click="RedoButton_OnClick">
+            <ToolTip.Tip>Redo (Ctrl/Cmd+Y)</ToolTip.Tip>
+          </Button>
+
+          <Border Width="1"
+                  Height="24"
+                  Background="#FFD8D8D8"
+                  Margin="4,0"/>
+
+          <Button Width="72"
+                  Height="32"
+                  Content="Cut"
+                  Click="CutButton_OnClick">
+            <ToolTip.Tip>Cut (Ctrl/Cmd+X)</ToolTip.Tip>
+          </Button>
+          <Button Width="72"
+                  Height="32"
+                  Content="Copy"
+                  Click="CopyButton_OnClick">
+            <ToolTip.Tip>Copy (Ctrl/Cmd+C)</ToolTip.Tip>
+          </Button>
+          <Button Width="72"
+                  Height="32"
+                  Content="Paste"
+                  Click="PasteButton_OnClick">
+            <ToolTip.Tip>Paste (Ctrl/Cmd+V)</ToolTip.Tip>
+          </Button>
+
+          <Border Width="1"
+                  Height="24"
+                  Background="#FFD8D8D8"
+                  Margin="4,0"/>
+
+          <ToggleButton x:Name="BoldButton"
+                        Width="36"
+                        Height="32"
+                        Click="BoldButton_OnClick">
+            <TextBlock Text="B"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <ToolTip.Tip>Bold (Ctrl/Cmd+B)</ToolTip.Tip>
+          </ToggleButton>
+          <ToggleButton x:Name="ItalicButton"
+                        Width="36"
+                        Height="32"
+                        Click="ItalicButton_OnClick">
+            <TextBlock Text="I"
+                       FontStyle="Italic"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <ToolTip.Tip>Italic (Ctrl/Cmd+I)</ToolTip.Tip>
+          </ToggleButton>
+          <ToggleButton x:Name="UnderlineButton"
+                        Width="36"
+                        Height="32"
+                        Click="UnderlineButton_OnClick">
+            <TextBlock Text="U"
+                       TextDecorations="Underline"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <ToolTip.Tip>Underline (Ctrl/Cmd+U)</ToolTip.Tip>
+          </ToggleButton>
+
+          <Border Width="1"
+                  Height="24"
+                  Background="#FFD8D8D8"
+                  Margin="4,0"/>
+
+          <ComboBox x:Name="FontFamilyCombo"
+                    Width="180"
+                    VerticalAlignment="Center"
+                    SelectionChanged="FontFamilyCombo_OnSelectionChanged"/>
+          <ComboBox x:Name="FontSizeCombo"
+                    Width="90"
+                    VerticalAlignment="Center"
+                    SelectionChanged="FontSizeCombo_OnSelectionChanged"/>
+          <ComboBox x:Name="FontColorCombo"
+                    Width="170"
+                    VerticalAlignment="Center"
+                    ItemTemplate="{StaticResource ColorOptionTemplate}"
+                    SelectionChanged="FontColorCombo_OnSelectionChanged"/>
+
+          <Border Width="1"
+                  Height="24"
+                  Background="#FFD8D8D8"
+                  Margin="4,0"/>
+
+          <ToggleButton x:Name="AlignLeftButton"
+                        Width="36"
+                        Height="32"
+                        Click="AlignLeftButton_OnClick">
+            <TextBlock Text="L"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <ToolTip.Tip>Align Left</ToolTip.Tip>
+          </ToggleButton>
+          <ToggleButton x:Name="AlignCenterButton"
+                        Width="36"
+                        Height="32"
+                        Click="AlignCenterButton_OnClick">
+            <TextBlock Text="C"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <ToolTip.Tip>Align Center</ToolTip.Tip>
+          </ToggleButton>
+          <ToggleButton x:Name="AlignJustifyButton"
+                        Width="36"
+                        Height="32"
+                        Click="AlignJustifyButton_OnClick">
+            <TextBlock Text="J"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <ToolTip.Tip>Justify</ToolTip.Tip>
+          </ToggleButton>
+
+          <Border Width="1"
+                  Height="24"
+                  Background="#FFD8D8D8"
+                  Margin="4,0"/>
+
+    <Button Width="80"
+      Height="32"
+      Content="Indent -"
+                  Click="DecreaseIndentButton_OnClick">
+            <ToolTip.Tip>Decrease Indent</ToolTip.Tip>
+          </Button>
+    <Button Width="80"
+      Height="32"
+      Content="Indent +"
+                  Click="IncreaseIndentButton_OnClick">
+            <ToolTip.Tip>Increase Indent</ToolTip.Tip>
+          </Button>
+
+          <Border Width="1"
+                  Height="24"
+                  Background="#FFD8D8D8"
+                  Margin="4,0"/>
+
+          <ToggleButton x:Name="BulletListButton"
+                        Width="36"
+                        Height="32"
+                        Click="BulletListButton_OnClick">
+            <TextBlock Text="•"
+                       FontSize="20"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <ToolTip.Tip>Toggle Bullet List</ToolTip.Tip>
+          </ToggleButton>
+          <ToggleButton x:Name="NumberListButton"
+                        Width="36"
+                        Height="32"
+                        Click="NumberListButton_OnClick">
+            <TextBlock Text="1."
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <ToolTip.Tip>Toggle Numbered List</ToolTip.Tip>
+          </ToggleButton>
+
+          <Border Width="1"
+                  Height="24"
+                  Background="#FFD8D8D8"
+                  Margin="4,0"/>
+
+          <Button Width="90"
+                  Height="32"
+                  Content="Table"
+                  Click="InsertTableButton_OnClick">
+            <ToolTip.Tip>Insert 3x3 Table</ToolTip.Tip>
+          </Button>
+        </StackPanel>
+      </ScrollViewer>
+    </Border>
+
+    <controls:RichTextBox x:Name="Editor"
+                          Grid.Row="2"
+                          SelectionBrush="#334282F1"
+                          CaretBrush="#FF4282F1"
+                          CaretWidth="2"
+                          BorderThickness="1"
+                          BorderBrush="#FFB0B0B0"
+                          Background="White"/>
+  </Grid>
+</Window>

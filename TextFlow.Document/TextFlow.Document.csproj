@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AvaloniaAccessUnstablePrivateApis>true</AvaloniaAccessUnstablePrivateApis>
+        <EnableAvaloniaPublicInlineHost Condition="'$(EnableAvaloniaPublicInlineHost)' == ''">false</EnableAvaloniaPublicInlineHost>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(EnableAvaloniaPublicInlineHost)' == 'true'">
+        <DefineConstants>$(DefineConstants);AVALONIA_PUBLIC_INLINE_HOST</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.3.6"/>
+        <IgnoresAccessChecksTo Include="Avalonia.Controls" />
+        <PackageReference Include="IgnoresAccessChecksToGenerator" Version="0.8.0" PrivateAssets="All"/>
+
+    </ItemGroup>
+
+</Project>

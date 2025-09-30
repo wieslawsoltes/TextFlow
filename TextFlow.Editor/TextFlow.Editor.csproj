@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.3.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TextFlow.Document\TextFlow.Document.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Themes/Generic.axaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="references\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="references\RichTextBox.Wpf.cs" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,86 @@
+<Window x:Class="TextFlow.Document.Wpf.Sample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:TextFlow.Document.Wpf.Sample"
+        Title="TextFlow Document WPF Sample" Height="700" Width="900">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <FlowDocumentScrollViewer IsToolBarVisible="True" VerticalScrollBarVisibility="Auto">
+                <FlowDocument Name="SampleDocument">
+                    <Paragraph FontSize="18" FontWeight="Bold">WPF FlowDocument Sample — Comprehensive Demo</Paragraph>
+
+                    <Paragraph>
+                        This document demonstrates many FlowDocument features. You can mix inline formatting such as 
+                        <Bold>bold</Bold>, <Italic>italic</Italic>, <Underline>underlined</Underline>, and different <Run Foreground="Blue">foreground colors</Run> or <Run FontSize="16">sizes</Run>.
+                    </Paragraph>
+
+                    <Paragraph>
+                        Paragraphs support alignment and flow direction. The sample below shows a centered paragraph.
+                    </Paragraph>
+
+                    <Paragraph TextAlignment="Center">
+                        This paragraph is centered. It contains a nested <Span FontStyle="Italic">span</Span> and multiple runs.
+                    </Paragraph>
+
+                    <List MarkerStyle="Numeric">
+                        <ListItem>
+                            <Paragraph>First numbered item with <Bold>bold text</Bold> and a <Run Foreground="DarkGreen">colored run</Run>.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Second item with an embedded figure.</Paragraph>
+                        </ListItem>
+                    </List>
+
+                    <Table CellSpacing="8">
+                        <Table.Columns>
+                            <TableColumn Width="2*"/>
+                            <TableColumn Width="3*"/>
+                        </Table.Columns>
+                        <TableRowGroup>
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph FontWeight="Bold">Column A</Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph FontWeight="Bold">Column B</Paragraph>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>Cell A1 with some text and <Underline>underlined</Underline> part.</Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>Cell B1 with a nested list:</Paragraph>
+                                    <List MarkerStyle="Disc">
+                                        <ListItem><Paragraph>Bullet 1</Paragraph></ListItem>
+                                        <ListItem><Paragraph>Bullet 2</Paragraph></ListItem>
+                                    </List>
+                                </TableCell>
+                            </TableRow>
+                        </TableRowGroup>
+                    </Table>
+
+                    <Paragraph>
+                        Below is a Figure (anchored) example — note that WPF will place the figure alongside text when layout allows.
+                    </Paragraph>
+
+                    <Figure Width="200" Height="120" HorizontalAnchor="PageLeft" WrapDirection="Both" Margin="6">
+                        <BlockUIContainer>
+                            <Border BorderBrush="Gray" BorderThickness="1" Padding="6" Background="#FFF8F8F8">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold">Figure Title</TextBlock>
+                                    <TextBlock TextWrapping="Wrap">This is a BlockUIContainer inside a Figure. You can put custom UI here.</TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </BlockUIContainer>
+                    </Figure>
+
+                    <Paragraph>
+                        Final paragraph demonstrating a hyperlink-like styled run. (This sample doesn't wire navigation.)
+                        <Run Foreground="Blue"> Clickable-looking text</Run>
+                    </Paragraph>
+                </FlowDocument>
+            </FlowDocumentScrollViewer>
+        </ScrollViewer>
+    </Grid>
+</Window>

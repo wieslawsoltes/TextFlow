@@ -1,0 +1,183 @@
+<Window xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:fdc="clr-namespace:TextFlow.Document.Controls;assembly=TextFlow.Document"
+    xmlns:fd="clr-namespace:TextFlow.Document.Documents;assembly=TextFlow.Document"
+    xmlns:viewModels="clr-namespace:TextFlow.Document.Sample.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="680"
+        x:Class="TextFlow.Document.Sample.MainWindow"
+        x:DataType="viewModels:MainWindowViewModel"
+        Title="TextFlow Document Preview">
+    <Grid RowDefinitions="Auto,Auto,*"
+          RowSpacing="12"
+          Margin="20">
+      <Grid Grid.Row="0"
+          ColumnDefinitions="*,Auto"
+          ColumnSpacing="12">
+            <ComboBox ItemsSource="{Binding Samples}"
+                      SelectedItem="{Binding SelectedSample}"
+                      DisplayMemberBinding="{Binding Name}"
+                      HorizontalAlignment="Stretch"
+                      MinWidth="280" />
+            <Button Grid.Column="1"
+                    Content="Add sample entry"
+                    Command="{Binding RunMutationCommand}"
+                    IsEnabled="{Binding CanMutate}" />
+        </Grid>
+
+        <Border Grid.Row="1"
+                Background="#0F000000"
+                Padding="14"
+                CornerRadius="6">
+            <TextBlock TextWrapping="Wrap"
+                       Text="{Binding Description}" />
+        </Border>
+
+        <Border Grid.Row="2"
+                BorderBrush="#1F000000"
+                BorderThickness="1"
+                CornerRadius="8"
+                Background="#FFF">
+            <TabControl Margin="0">
+                <TabItem Header="View-model samples">
+                    <fdc:FlowDocumentView Document="{Binding Document}" />
+                </TabItem>
+                <TabItem Header="XAML demo">
+                    <fdc:FlowDocumentView>
+                        <fd:FlowDocument Name="SampleDocument">
+                            <fd:Paragraph FontSize="18" FontWeight="Bold">WPF FlowDocument Sample — Comprehensive Demo</fd:Paragraph>
+
+                            <fd:Paragraph>
+                                <fd:Paragraph.Inlines>
+                                    <fd:Run Text="This document demonstrates many FlowDocument features. You can mix inline formatting such as "/>
+                                    <fd:Bold>
+                                        <fd:Run Text="bold"/>
+                                    </fd:Bold>
+                                    <fd:Run Text=", "/>
+                                    <fd:Italic>
+                                        <fd:Run Text="italic"/>
+                                    </fd:Italic>
+                                    <fd:Run Text=", "/>
+                                    <fd:Underline>
+                                        <fd:Run Text="underlined"/>
+                                    </fd:Underline>
+                                    <fd:Run Text=", and different "/>
+                                    <fd:Run Foreground="Blue" Text="foreground colors"/>
+                                    <fd:Run Text=" or "/>
+                                    <fd:Run FontSize="16" Text="sizes"/>
+                                    <fd:Run Text="."/>
+                                </fd:Paragraph.Inlines>
+                            </fd:Paragraph>
+
+                            <fd:Paragraph>
+                                Paragraphs support alignment and flow direction. The sample below shows a centered paragraph.
+                            </fd:Paragraph>
+
+                            <fd:Paragraph TextAlignment="Center">
+                                <fd:Paragraph.Inlines>
+                                    <fd:Run Text="This paragraph is centered. It contains a nested "/>
+                                    <fd:Span FontStyle="Italic">
+                                        <fd:Run Text="span"/>
+                                    </fd:Span>
+                                    <fd:Run Text=" and multiple runs."/>
+                                </fd:Paragraph.Inlines>
+                            </fd:Paragraph>
+
+                            <fd:List MarkerStyle="Decimal">
+                                <fd:ListItem>
+                                    <x:Arguments>
+                                        <fd:Paragraph>
+                                            <fd:Paragraph.Inlines>
+                                                <fd:Run Text="First numbered item with "/>
+                                                <fd:Bold>
+                                                    <fd:Run Text="bold text"/>
+                                                </fd:Bold>
+                                                <fd:Run Text=" and a "/>
+                                                <fd:Run Foreground="DarkGreen" Text="colored run"/>
+                                                <fd:Run Text="."/>
+                                            </fd:Paragraph.Inlines>
+                                        </fd:Paragraph>
+                                    </x:Arguments>
+                                </fd:ListItem>
+                                <fd:ListItem>
+                                    <x:Arguments>
+                                        <fd:Paragraph>Second item with an embedded figure.</fd:Paragraph>
+                                    </x:Arguments>
+                                </fd:ListItem>
+                            </fd:List>
+
+                            <fd:Table CellSpacing="8">
+                                <fd:Table.Columns>
+                                    <fd:TableColumn Width="220"/>
+                                    <fd:TableColumn Width="320"/>
+                                </fd:Table.Columns>
+                                <fd:TableRowGroup>
+                                    <fd:TableRow>
+                                        <fd:TableCell>
+                                            <fd:Paragraph FontWeight="Bold">Column A</fd:Paragraph>
+                                        </fd:TableCell>
+                                        <fd:TableCell>
+                                            <fd:Paragraph FontWeight="Bold">Column B</fd:Paragraph>
+                                        </fd:TableCell>
+                                    </fd:TableRow>
+                                    <fd:TableRow>
+                                        <fd:TableCell>
+                                            <fd:Paragraph>
+                                                <fd:Paragraph.Inlines>
+                                                    <fd:Run Text="Cell A1 with some text and "/>
+                                                    <fd:Underline>
+                                                        <fd:Run Text="underlined"/>
+                                                    </fd:Underline>
+                                                    <fd:Run Text=" part."/>
+                                                </fd:Paragraph.Inlines>
+                                            </fd:Paragraph>
+                                        </fd:TableCell>
+                                        <fd:TableCell>
+                                            <fd:Paragraph>Cell B1 with a nested list:</fd:Paragraph>
+                                            <fd:List MarkerStyle="Disc">
+                                                <fd:ListItem>
+                                                    <x:Arguments>
+                                                        <fd:Paragraph>Bullet 1</fd:Paragraph>
+                                                    </x:Arguments>
+                                                </fd:ListItem>
+                                                <fd:ListItem>
+                                                    <x:Arguments>
+                                                        <fd:Paragraph>Bullet 2</fd:Paragraph>
+                                                    </x:Arguments>
+                                                </fd:ListItem>
+                                            </fd:List>
+                                        </fd:TableCell>
+                                    </fd:TableRow>
+                                </fd:TableRowGroup>
+                            </fd:Table>
+
+                            <fd:Paragraph>
+                                Below is a Figure (anchored) example — note that WPF will place the figure alongside text when layout allows.
+                            </fd:Paragraph>
+
+                            <!--<fd:Figure Width="200" Height="120" HorizontalAnchor="PageLeft" WrapDirection="Both" Margin="6">
+                                <BlockUIContainer>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Padding="6" Background="#FFF8F8F8">
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Figure Title</TextBlock>
+                                            <TextBlock TextWrapping="Wrap">This is a BlockUIContainer inside a Figure. You can put custom UI here.</TextBlock>
+                                        </StackPanel>
+                                    </Border>
+                                </BlockUIContainer>
+                            </fd:Figure>-->
+
+                            <fd:Paragraph>
+                                <fd:Paragraph.Inlines>
+                                    <fd:Run Text="Final paragraph demonstrating a hyperlink-like styled run. (This sample doesn't wire navigation.)"/>
+                                    <fd:Run Text=" "/>
+                                    <fd:Run Foreground="Blue" Text="Clickable-looking text"/>
+                                </fd:Paragraph.Inlines>
+                            </fd:Paragraph>
+                        </fd:FlowDocument>
+                    </fdc:FlowDocumentView>
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Grid>
+</Window>
